@@ -1,0 +1,42 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Scripts/BulletShooter.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Bullet.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Sprites/bulletshooter/BulletShooter1.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/bulletshooter/BulletShooter2.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/bulletshooter/BulletShooter4.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/bulletshooter/BulletShooter10.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/bulletshooter/BulletShooter5.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/bulletshooter/BulletShooter8.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/bulletshooter/BulletShooter3.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/bulletshooter/BulletShooter6.png" type="Texture" id=11]
+[ext_resource path="res://Sprites/bulletshooter/BulletShooter9.png" type="Texture" id=12]
+[ext_resource path="res://Sprites/bulletshooter/BulletShooter7.png" type="Texture" id=13]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 16, 16 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 10 ), ExtResource( 6 ), ExtResource( 8 ), ExtResource( 11 ), ExtResource( 13 ), ExtResource( 9 ), ExtResource( 12 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "default",
+"speed": 12.0
+} ]
+
+[node name="BulletShooter" type="Node2D" groups=["bulletShooters"]]
+script = ExtResource( 1 )
+bulletScene = ExtResource( 2 )
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." groups=["Solids"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+scale = Vector2( 0.97, 0.97 )
+shape = SubResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 2 )
+frame = 4
